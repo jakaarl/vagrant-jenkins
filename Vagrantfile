@@ -69,4 +69,12 @@ Vagrant.configure(2) do |config|
   #   sudo apt-get update
   #   sudo apt-get install -y apache2
   # SHELL
+  config.vm.provision "shell", inline: <<-SHELL
+    wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
+    sudo echo "deb http://pkg.jenkins-ci.org/debian binary/" >> /etc/apt/sources.list
+    sudo apt-get update
+    sudo apt-get purge -y default-jre
+    sudo apt-get install -y openjdk-7-jre-headless
+    sudo apt-get install -y jenkins
+  SHELL
 end
