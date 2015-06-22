@@ -2,6 +2,7 @@ Jenkins CI on a VirtualBox
 ==========================
 
 Steps:
+
 1. Install Vagrant and VirtualBox on host system.
 2. Run "vagrant init hashicorp/precise32".
 3. Run "vagrant up".
