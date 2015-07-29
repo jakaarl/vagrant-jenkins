@@ -23,6 +23,7 @@ Vagrant.configure(2) do |config|
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # config.vm.network "forwarded_port", guest: 80, host: 8080
+  config.vm.network "forwarded_port", guest: 8080, host: 8880
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -76,5 +77,10 @@ Vagrant.configure(2) do |config|
     sudo apt-get purge -y default-jre
     sudo apt-get install -y openjdk-7-jre-headless
     sudo apt-get install -y jenkins
+    sudo apt-get install -y git
+    sudo -u jenkins wget -O /var/lib/jenkins/plugins/git.hpi http://updates.jenkins-ci.org/latest/git.hpi
+    sudo -u jenkins wget -O /var/lib/jenkins/plugins/git-client.hpi http://updates.jenkins-ci.org/latest/git-client.hpi
+    sudo -u jenkins wget -O /var/lib/jenkins/plugins/scm-api.hpi http://updates.jenkins-ci.org/latest/scm-api.hpi
+    sudo service jenkins restart
   SHELL
 end
